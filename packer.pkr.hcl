@@ -12,6 +12,7 @@ source "googlecompute" "instruqt_image" {
   # Do not modify
   account_file = "instruqt.json"
   region       = "europe-west1"
+  zone         = "europe-west1-b"
 }
 
 # Example provisioners
