@@ -5,14 +5,13 @@ source "googlecompute" "instruqt_image" {
 
   # Modify where desired
   image_name   = "instruqt-image-01"
-  source_image = "ubuntu-2204-lts"
+  source_image = "ubuntu-2204-jammy-v20221101a"
   disk_size    = "10"
   ssh_username = "root"
 
   # Do not modify
   account_file = "instruqt.json"
   region       = "europe-west1"
-  zone         = "europe-west1-b"
 }
 
 # Example provisioners
