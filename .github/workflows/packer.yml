@@ -1,0 +1,32 @@
+name: Packer
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Pull HashiCorp Key
+        run: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+        
+      - name: Add HashiCorp Repo
+        run: sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+        
+      - name: Install Packer
+        run: sudo apt update && sudo apt install packer -y
+          
+      - name: Test Packer
+        run: packer --help
+
+      - name: Create JSON File
+        uses: jsdaniell/create-json@v1.2.1
+        with:
+          name: "instruqt.json"
+          json: ${{ secrets.GCP_KEY_FILE }}
+
+      - name: Packer Build
+        run: packer build -force packer.pkr.hcl
