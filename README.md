@@ -31,3 +31,17 @@ Furthermore, you can edit/add your own provisioners to the file:
 ```
 
 Check out the Packer Documentation for more information: https://developer.hashicorp.com/packer/docs
+
+## Automating this template even further
+
+By default, this template is only configured to generate images whenever you manually run the *Packer* GitHub Action. 
+You can modify the `.github/workflows/packer.yml` file to trigger image creation in different ways. 
+
+For example, to trigger image creation every time there is a push to the `main` branch, you can use the following configuration:
+
+```
+on:
+  push:
+    branches:
+      - main
+```
